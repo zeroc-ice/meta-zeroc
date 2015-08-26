@@ -14,6 +14,10 @@ IMAGE_INSTALL = " \
     python-modules \
     rsync \
     zeroc-ice \
+    zeroc-ice-python \
+    zeroc-ice-utils \
+    zeroc-glacier2 \
+    zeroc-icebox \
     "
 
 IMAGE_FSTYPES = "tar.bz2 ext3 sdcard"

@@ -46,8 +46,8 @@ do_install () {
 
 # Add extra things to -dev
 FILES_${PN}-dev += "${bindir}/slice2*"
-DEPENDS_${PN}-dev= "${PV}-slice"
-RDEPENDS_${PN}-dev= "${PV}-slice"
+DEPENDS_${PN}-dev= "${PN}-slice"
+RDEPENDS_${PN}-dev= "${PN}-slice"
 
 # Add Python debug files
 FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
@@ -71,6 +71,6 @@ FILES_${PN}-utils += "${bindir}/iceboxadmin"
 # Python Package
 PACKAGES += "${PN}-python"
 FILES_${PN}-python += "${PYTHON_SITEPACKAGES_DIR}"
-RDEPENDS_${PN}-python = "${PV}-slice python"
+RRECOMMENDS_${PN}-python = "${PN}-slice python"
 
 BBCLASSEXTEND += "native nativesdk"
