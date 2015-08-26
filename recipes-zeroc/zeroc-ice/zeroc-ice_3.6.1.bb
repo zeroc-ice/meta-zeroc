@@ -44,23 +44,33 @@ do_install () {
     oe_runmake install DESTDIR=${D} prefix=${prefix}
 }
 
-# Ensure Slice files are in dev package
-FILES_${PN}-dev += "${bindir}/slice2* ${base_prefix}/usr/share/Ice-${PV}"
+# Add extra things to -dev
+FILES_${PN}-dev += "${bindir}/slice2*"
+DEPENDS_${PN}-dev= "${PV}-slice"
+RDEPENDS_${PN}-dev= "${PV}-slice"
 
 # Add Python debug files
 FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
 
 # Glacier2 Package
-PACKAGES =+ "${PN}-glacier2"
-FILES_${PN}-glacier2 += "${bindir}/glacier2router"
+PACKAGES =+ "zeroc-ice-slice"
+FILES_${PN}-slice += "${base_prefix}/usr/share/Ice-${PV}"
+
+# Glacier2 Package
+PACKAGES =+ "zeroc-glacier2"
+FILES_zeroc-glacier2 += "${bindir}/glacier2router"
 
 # IceBox Package
-PACKAGES =+ "${PN}-icebox"
-FILES_${PN}-icebox += "${bindir}/icebox*"
+PACKAGES =+ "zeroc-icebox"
+FILES_zeroc-icebox += "${bindir}/icebox"
+
+# Utils Package
+PACKAGES =+ "${PN}-utils"
+FILES_${PN}-utils += "${bindir}/iceboxadmin"
 
 # Python Package
 PACKAGES += "${PN}-python"
 FILES_${PN}-python += "${PYTHON_SITEPACKAGES_DIR}"
-RDEPENDS_${PN}-python = "python"
+RDEPENDS_${PN}-python = "${PV}-slice python"
 
 BBCLASSEXTEND += "native nativesdk"
