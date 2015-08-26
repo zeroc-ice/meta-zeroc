@@ -1,4 +1,4 @@
-SUMMARY  = "Ice-E"
+SUMMARY  = "ZeroC Ice"
 DESCRIPTION = "Ice-E brings Ice for C++ and Ice for Python to embedded devices"
 HOMEPAGE = "https://zeroc.com"
 SECTION  = "libs"
@@ -7,12 +7,12 @@ LICENSE  = "GPLv2"
 LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=b736c5ad38678f3d541b465ac944711f"
 
 DEPENDS  = "openssl bzip2 python"
-DEPENDS_append_class-target = " icee-native"
-DEPENDS_append_class-nativesdk = " icee-native"
+DEPENDS_append_class-target = " zeroc-ice-native"
+DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "18b0fd1b5e0af387787cb06746cd4ac5903ebfc3"
+SRCREV = "7b14dcaf785fbb1bcff9d7376fd6e29d4efd435a"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
