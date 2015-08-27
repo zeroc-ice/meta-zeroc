@@ -31,3 +31,16 @@ This recipe provides [Ice for embedded devices](https://github.com/zeroc-ice/ice
 This recipe provides an image configured with the packages needed to run the Ice test suite. A `-dev` version is also available which installs development (`-dev`) packages.
 
 Note that you will need to [install pip manually](https://pip.pypa.io/en/latest/installing.html) once your image is running if you wish to run the glacier2 tests.
+
+## Classes
+
+### zeroc-icenative36
+
+This class adds the `zeroc-ice` native developemnt dependency and defines the following variables:
+
+| Variable            | Description                               |
+| --------            | -----------                               |
+| ZEROC_ICE_SLICE2CPP | Path to the native `slice2cpp` executable |
+| ZEROC_ICE_SLICE2PY  | Pth to the native `slice2py` executable   |
+| ZEROC_ICE_SLICE_DIR | Directory containing Slice files          |
+| ZEROC_ICE_VERSION   | `zeroc-ice` Version                       |
