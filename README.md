@@ -36,11 +36,11 @@ Note that you will need to [install pip manually](https://pip.pypa.io/en/latest/
 
 ### zeroc-icenative36
 
-This class adds the `zeroc-ice` native developemnt dependency and defines the following variables:
+This class adds the `zeroc-ice` native development dependency and defines the following variables:
 
 | Variable            | Description                               |
 | --------            | -----------                               |
 | ZEROC_ICE_SLICE2CPP | Path to the native `slice2cpp` executable |
-| ZEROC_ICE_SLICE2PY  | Pth to the native `slice2py` executable   |
+| ZEROC_ICE_SLICE2PY  | Path to the native `slice2py` executable  |
 | ZEROC_ICE_SLICE_DIR | Directory containing Slice files          |
 | ZEROC_ICE_VERSION   | `zeroc-ice` Version                       |
