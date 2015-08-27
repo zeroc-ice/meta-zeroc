@@ -1,4 +1,4 @@
-SUMMARY  = "ZeroC Ice"
+SUMMARY  = "ZeroC Ice Embedded"
 DESCRIPTION = "Ice-E brings Ice for C++ and Ice for Python to embedded devices"
 HOMEPAGE = "https://zeroc.com"
 SECTION  = "libs"
@@ -44,7 +44,7 @@ do_install () {
     oe_runmake install DESTDIR=${D} prefix=${prefix}
 }
 
-# Add extra things to -dev
+# Add slice compilers and -slice dependency to -dev
 FILES_${PN}-dev += "${bindir}/slice2*"
 DEPENDS_${PN}-dev= "${PN}-slice"
 RDEPENDS_${PN}-dev= "${PN}-slice"
@@ -52,7 +52,7 @@ RDEPENDS_${PN}-dev= "${PN}-slice"
 # Add Python debug files
 FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
 
-# Glacier2 Package
+# Slice Package
 PACKAGES =+ "zeroc-ice-slice"
 FILES_${PN}-slice += "${base_prefix}/usr/share/Ice-${PV}"
 
@@ -71,6 +71,7 @@ FILES_${PN}-utils += "${bindir}/iceboxadmin"
 # Python Package
 PACKAGES += "${PN}-python"
 FILES_${PN}-python += "${PYTHON_SITEPACKAGES_DIR}"
-RRECOMMENDS_${PN}-python = "${PN}-slice python"
+RDEPENDS_${PN}-python = "${PN}-slice python-core"
 
+# Add native and nativesdk support
 BBCLASSEXTEND += "native nativesdk"
