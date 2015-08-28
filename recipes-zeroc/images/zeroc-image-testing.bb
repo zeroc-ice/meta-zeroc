@@ -1,9 +1,6 @@
 DESCRIPTION = "Everything required to run the ZeroC Ice test suite"
 
-IMAGE_FEATURES += " \
-    debug-tweaks \
-    ssh-server-dropbear \
-    "
+IMAGE_FEATURES += "debug-tweaks ssh-server-dropbear"
 
 IMAGE_INSTALL = " \
     packagegroup-core-boot \
