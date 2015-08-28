@@ -14,6 +14,9 @@ RDEPENDS_${PN} = "openssl bzip2"
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
 SRCREV = "fe3a98841849618d714bba51698bd58a0f34686c"
 
+PV = "3.6.1-rc"
+PR = "0"
+
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
 MCPP_DIR = "${S}/mcpp"
