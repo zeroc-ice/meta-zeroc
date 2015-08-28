@@ -1,5 +1,5 @@
-SUMMARY  = "ZeroC Ice Embedded"
-DESCRIPTION = "Ice-E brings Ice for C++ and Ice for Python to embedded devices"
+SUMMARY  = "ZeroC Ice for Yocto"
+DESCRIPTION = "Comprehensive RPC framework"
 HOMEPAGE = "https://zeroc.com"
 SECTION  = "libs"
 
