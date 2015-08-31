@@ -17,12 +17,4 @@ IMAGE_INSTALL = " \
     zeroc-icebox \
     "
 
-IMAGE_FSTYPES = "tar.bz2 ext3 sdcard"
-
 inherit core-image
-
-ENABLE_BINARY_LOCALE_GENERATION = "1"
-IMAGE_LINGUAS = "en-us"
-GLIBC_GENERATE_LOCALES = "en_US.UTF-8"
-
-IMAGE_ROOTFS_EXTRA_SPACE_append = "+ 2000000"
