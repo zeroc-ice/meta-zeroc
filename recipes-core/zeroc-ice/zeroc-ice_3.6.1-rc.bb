@@ -12,10 +12,10 @@ DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "937903453bbcded32dbe9682d21e0d1fe5ecd5a9"
+SRCREV = "4b7eb4cba16aed0184a61befc92d08535b4ab033"
 
 PV = "3.6.1-rc"
-PR = "1"
+PR = "2"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
