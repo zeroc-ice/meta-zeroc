@@ -16,6 +16,7 @@ SRCREV = "4b7eb4cba16aed0184a61befc92d08535b4ab033"
 
 PV = "3.6.1-rc"
 PR = "2"
+ICE_VERSION = "3.6.1"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
@@ -57,7 +58,7 @@ FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
 
 # Slice Package
 PACKAGES =+ "zeroc-ice-slice"
-FILES_${PN}-slice += "${base_prefix}/usr/share/Ice-${PV}"
+FILES_${PN}-slice += "${base_prefix}/usr/share/Ice-${ICE_VERSION}"
 
 # Glacier2 Package
 PACKAGES =+ "zeroc-glacier2"
