@@ -17,4 +17,7 @@ IMAGE_INSTALL = " \
     zeroc-icebox \
     "
 
+TOOLCHAIN_TARGET_TASK += "zeroc-ice-dev zeroc-ice-staticdev"
+TOOLCHAIN_HOST_TASK  += "nativesdk-zeroc-ice-dev"
+
 inherit core-image
