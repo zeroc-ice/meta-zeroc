@@ -7,6 +7,7 @@ IMAGE_INSTALL = " \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     glibc-gconvs \
     glibc-utils \
+    ca-certificates \
     python-misc \
     python-modules \
     rsync \
