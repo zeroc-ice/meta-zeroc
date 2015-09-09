@@ -7,17 +7,17 @@ LICENSE  = "GPLv2"
 LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=b736c5ad38678f3d541b465ac944711f"
 
 DEPENDS  = "openssl bzip2 python"
-DEPENDS_append_class-target = " zeroc-ice-native"
-DEPENDS_append_class-nativesdk = " zeroc-ice-native"
+DEPENDS_append_class-target = " ${PN}-native"
+DEPENDS_append_class-nativesdk = " ${PN}-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "850012d2401d6761e5ddfa844e6e4ebe0b936c8e"
+SRCREV = "da95ffd9629bef12def1e1f1643807b4d1d4257a"
 
 ICE_VERSION = "3.6.1"
 
 PV = "${ICE_VERSION}-rc"
-PR = "4"
+PR = "r5"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
@@ -58,7 +58,7 @@ RDEPENDS_${PN}-dev= "${PN}-slice"
 FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
 
 # Slice Package
-PACKAGES =+ "zeroc-ice-slice"
+PACKAGES =+ "${PN}-slice"
 FILES_${PN}-slice += "${base_prefix}/usr/share/Ice-${ICE_VERSION}"
 
 # Glacier2 Package
