@@ -7,8 +7,8 @@ LICENSE  = "GPLv2"
 LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=b736c5ad38678f3d541b465ac944711f"
 
 DEPENDS  = "openssl bzip2 python"
-DEPENDS_append_class-target = " ${PN}-native"
-DEPENDS_append_class-nativesdk = " ${PN}-native"
+DEPENDS_append_class-target = " zeroc-ice-native"
+DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
