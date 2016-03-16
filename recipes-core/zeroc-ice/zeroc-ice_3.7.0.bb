@@ -1,7 +1,8 @@
 ICE_VERSION = "3.7.0"
+DEFAULT_PREFERENCE = "-1"
 
 require zeroc-ice.inc
-
+PV = "${ICE_VERSION}"-rc
 inherit bluetooth
 
 BUILD_ICE_BT = "${@base_contains("DISTRO_FEATURES", "bluetooth", "yes", "", d)}"
