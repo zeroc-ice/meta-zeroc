@@ -12,7 +12,7 @@ DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "824e45c53339a9d1a56564e388a5ab793c5a05be"
+SRCREV = "ded7b9bc1f5a23fc4f841a96624a06fa46eb3e4c"
 
 #
 # This tracks rc release of Ice 3.6.2 and will become
