@@ -12,7 +12,7 @@ DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "ded7b9bc1f5a23fc4f841a96624a06fa46eb3e4c"
+SRCREV = "b4b2f8b388f11c9d3f8992cc5e1d4344ee948678"
 
 #
 # This tracks rc release of Ice 3.6.2 and will become
@@ -55,8 +55,9 @@ do_install () {
     oe_runmake install DESTDIR=${D} prefix=${prefix}
     oe_runmake install DESTDIR=${D} prefix=${prefix} CPP11=yes
 
-    # Remove IcePy library which is duplicated into the lib dir
     rm -f ${D}${libdir}/IcePy*
+    rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so
+    rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so.36
 }
 
 # Add slice compilers and -slice dependency to -dev and add c++11 library symlinks
