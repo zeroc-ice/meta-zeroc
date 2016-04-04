@@ -4,7 +4,7 @@ HOMEPAGE = "https://zeroc.com"
 SECTION  = "libs"
 
 LICENSE  = "GPLv2"
-LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=b736c5ad38678f3d541b465ac944711f"
+LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=eda3d1dc0f8f1e70378830dacd0c44d5"
 
 DEPENDS  = "openssl bzip2 python"
 DEPENDS_append_class-target = " zeroc-ice-native"
@@ -12,9 +12,9 @@ DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "8c8ace8348ec39664faa127294bf151efb33d916"
+SRCREV = "fc067d1a2df49f5f9dd1bc487cd473d11b175406"
 
-ICE_VERSION = "3.6.1"
+ICE_VERSION = "3.6.2"
 PV = "${ICE_VERSION}"
 PR = "r0"
 
@@ -22,7 +22,7 @@ S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
 MCPP_DIR = "${S}/mcpp"
 
-EXTRA_OEMAKE = "'ICEE_TARGET_OS=yocto' 'OPTIMIZE=yes'"
+EXTRA_OEMAKE = "'ICEE_TARGET_OS=yocto' 'OPTIMIZE=yes' 'NOFREEZE=yes'"
 EXTRA_OEMAKE_append_class-target = " ICE_HOME=${STAGING_DIR_NATIVE}/usr"
 EXTRA_OEMAKE_append_class-nativesdk = " ICE_HOME=${STAGING_DIR_NATIVE}/usr"
 
@@ -42,37 +42,45 @@ do_compile_prepend_class-native () {
 
 do_compile () {
     oe_runmake dist python_include_dir=${STAGING_INCDIR}/${PYTHON_DIR}
+    oe_runmake dist CPP11=yes
 }
 
 do_install () {
     oe_runmake install DESTDIR=${D} prefix=${prefix}
+    oe_runmake install DESTDIR=${D} prefix=${prefix} CPP11=yes
+
+    rm -f ${D}${libdir}/IcePy*
+    rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so
+    rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so.36
 }
 
-# Add slice compilers and -slice dependency to -dev
-FILES_${PN}-dev += "${bindir}/slice2*"
+# Add slice compilers and -slice dependency to -dev and add c++11 library symlinks
+FILES_${PN}-dev += "${bindir}/slice2* ${libdir}/c++11/*.so"
 DEPENDS_${PN}-dev= "${PN}-slice"
 RDEPENDS_${PN}-dev= "${PN}-slice"
 
-# Add Python debug files
+FILES_${PN}-staticdev += "${libdir}/c++11/*.a"
+
+# Add Python debug files to -dbg
 FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
 
-# Slice Package
+# Slice
 PACKAGES =+ "${PN}-slice"
 FILES_${PN}-slice += "${base_prefix}/usr/share/Ice-${ICE_VERSION}"
 
-# Glacier2 Package
+# Glacier2
 PACKAGES =+ "zeroc-glacier2"
 FILES_zeroc-glacier2 += "${bindir}/glacier2router"
 
-# IceBox Package
+# IceBox
 PACKAGES =+ "zeroc-icebox"
 FILES_zeroc-icebox += "${bindir}/icebox"
 
-# Utils Package
+# Utils
 PACKAGES =+ "${PN}-utils"
 FILES_${PN}-utils += "${bindir}/iceboxadmin"
 
-# Python Package
+# Python
 PACKAGES += "${PN}-python"
 FILES_${PN}-python += "${PYTHON_SITEPACKAGES_DIR}"
 RDEPENDS_${PN}-python = "${PN}-slice python-core"
