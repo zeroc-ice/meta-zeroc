@@ -35,6 +35,12 @@ do_configure () {
 do_compile_prepend_class-native () {
     oe_runmake -C${MCPP_DIR}
 
+    # The dpkg perl module used by dpkg-architecture is installed in perl's staging dir at dpkg-native
+    # compile time. Unfortunately, perl-native is not configured to to check this particular location.
+    if [ -e "${STAGING_DIR_NATIVE}/usr/bin/dpkg-architecture" ]; then
+        export PERL5LIB="$PERL5LIB:${STAGING_DIR_NATIVE}/usr/lib/perl-native/perl"
+    fi
+
     for dir in IceUtil Slice slice2cpp slice2py; do
         oe_runmake -C${S}/ice/cpp/src/${dir} STATICLIBS=yes MCPP_HOME=${MCPP_DIR} GCC_COMPILER=yes
     done
