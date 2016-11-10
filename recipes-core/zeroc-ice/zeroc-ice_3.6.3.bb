@@ -16,7 +16,7 @@ SRCREV = "eaddf95b1a430508f4857e04f62d252b972d9186"
 
 ICE_VERSION = "3.6.3"
 PV = "${ICE_VERSION}"
-PR = "r0"
+PR = "r1"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
