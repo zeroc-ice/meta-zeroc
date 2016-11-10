@@ -58,6 +58,7 @@ do_install () {
     rm -f ${D}${libdir}/IcePy*
     rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so
     rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so.36
+    mv ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so.${ICE_VERSION} ${D}${PYTHON_SITEPACKAGES_DIR}/IcePy.so
 }
 
 # Add slice compilers and -slice dependency to -dev and add c++11 library symlinks
