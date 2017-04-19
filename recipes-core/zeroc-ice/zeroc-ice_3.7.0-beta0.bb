@@ -7,17 +7,17 @@ LICENSE  = "GPLv2"
 LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=5edee2df5627c95e640d5e1c65323adb \
                     file://LICENSE;md5=21174f1da53145d75abea1badd2cbab4"
 
-PV = "master"
+PV = "3.7.0-beta0"
 PR = "r0"
 
-SRC_URI = "https://github.com/${BPN}/ice/archive/${PV}.tar.gz"
+SRC_URI = "https://github.com/${BPN}/ice/archive/v${PV}.tar.gz"
 
-# SRC_URI[md5sum] = ""
-# SRC_URI[sha256sum] = ""
+SRC_URI[md5sum] = "8a5fcd4557f29cf87170152965a3d712"
+SRC_URI[sha256sum] = "2ce1ee772e1f8424af867ba69796fcfdf1a67dc8816c192705e8363343a6575f"
 
 S = "${WORKDIR}/ice-${PV}"
 B = "${WORKDIR}/ice-${PV}"
-# DEFAULT_PREFERENCE = "-1"
+DEFAULT_PREFERENCE = "-1"
 
 inherit bluetooth python-dir
 
