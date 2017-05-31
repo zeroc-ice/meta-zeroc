@@ -4,30 +4,30 @@ HOMEPAGE = "https://zeroc.com"
 SECTION  = "libs"
 
 LICENSE  = "GPLv2"
-LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=5edee2df5627c95e640d5e1c65323adb \
-                    file://LICENSE;md5=21174f1da53145d75abea1badd2cbab4"
+LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=8f854d70ef74e85cb1510dfe3787ec66 \
+                    file://LICENSE;md5=1b65bb9598f16820aab2ae1dd2a51f9f"
 
-PV = "3.7.0-beta0"
+PV = "3.7.0"
 PR = "r0"
 
-SRC_URI = "https://github.com/${BPN}/ice/archive/v${PV}.tar.gz"
+SRC_URI = "https://github.com/${BPN}/ice/archive/master.tar.gz"
 
-SRC_URI[md5sum] = "8a5fcd4557f29cf87170152965a3d712"
-SRC_URI[sha256sum] = "2ce1ee772e1f8424af867ba69796fcfdf1a67dc8816c192705e8363343a6575f"
+SRC_URI[md5sum] = "27f826fe3a17f94e560a28f133a4a749"
+SRC_URI[sha256sum] = "a892f5d47e713dcdad664334ebb477008d98da282d7c64bf0e273d50b5d0cda0"
 
-S = "${WORKDIR}/ice-${PV}"
-B = "${WORKDIR}/ice-${PV}"
+S = "${WORKDIR}/ice-master"
+B = "${WORKDIR}/ice-master"
 DEFAULT_PREFERENCE = "-1"
 
-inherit bluetooth python-dir
+inherit bluetooth python-dir pkgconfig
 
 BLUEZ_DEPS = "${BLUEZ} dbus-glib expat"
-DEPENDS  = "openssl bzip2 python mcpp lmdb ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
+DEPENDS  = " openssl bzip2 python mcpp lmdb ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
 RDEPENDS_${PN} = "openssl bzip2"
 
 python () {
     import re
-    m = re.search('^([a-z0-9]+)-.*', d.getVar("CXX", True))
+    m = re.search('^([a-z0-9_]+)-.*', d.getVar("CXX", True))
     if m:
         d.setVar('PLATFORM', m.group(1))
 }
@@ -37,6 +37,7 @@ python () {
 EXTRA_OEMAKE = "'OECORE_SDK_VERSION=yes' \
                 'CONFIGS=all' \
                 'LANGUAGES=cpp python' \
+                'USR_DIR_INSTALL=yes' \
                 "${PLATFORM}_excludes=${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '', 'IceBT', d)}"\
                 'install_pythondir=${PYTHON_SITEPACKAGES_DIR}' \
                 'PYTHON_LIB_DIR=${STAGING_LIBDIR}' \
@@ -45,7 +46,7 @@ EXTRA_OEMAKE = "'OECORE_SDK_VERSION=yes' \
                 'PYTHON_INCLUDE_DIR=${STAGING_INCDIR}/${PYTHON_DIR}'"
 
 do_compile () {
-    oe_runmake srcs
+    oe_runmake V=1 srcs
 }
 
 do_install () {
@@ -90,7 +91,7 @@ RDEPENDS_${PN}-python = "${PN}-slice python-core"
 
 # Slice
 PACKAGES =+ "${PN}-slice"
-FILES_${PN}-slice += "${base_prefix}/usr/share/ice/slice /usr/share/slice"
+FILES_${PN}-slice += "${base_prefix}/usr/share/ice/slice ${base_prefix}/usr/share/slice"
 
 # Utils
 PACKAGES =+ "${PN}-utils"
