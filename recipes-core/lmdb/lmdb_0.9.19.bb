@@ -3,7 +3,7 @@ DESCRIPTION = "Symas LMDB is an extraordinarily fast, memory-efficient database"
 HOMEPAGE = "https://github.com/zeroc-ice/mcpp"
 SECTION  = "libs"
 
-LICENSE  = "OpenLDAP"
+LICENSE  = "OLDAP-2.8"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=153d07ef052c4a37a8fac23bc6031972"
 
 PV = "0.9.19"
