@@ -7,16 +7,15 @@ LICENSE  = "GPLv2"
 LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=8f854d70ef74e85cb1510dfe3787ec66 \
                     file://LICENSE;md5=1b65bb9598f16820aab2ae1dd2a51f9f"
 
-PV = "3.7.0"
+SRCREV  = "${AUTOREV}"
+
+PV = "3.7.0+git${SRCPV}"
 PR = "r0"
 
-SRC_URI = "https://github.com/${BPN}/ice/archive/master.tar.gz"
+SRC_URI = "git://github.com/zeroc-ice/ice"
 
-SRC_URI[md5sum] = "27f826fe3a17f94e560a28f133a4a749"
-SRC_URI[sha256sum] = "a892f5d47e713dcdad664334ebb477008d98da282d7c64bf0e273d50b5d0cda0"
-
-S = "${WORKDIR}/ice-master"
-B = "${WORKDIR}/ice-master"
+S = "${WORKDIR}/git"
+B = "${WORKDIR}/git"
 DEFAULT_PREFERENCE = "-1"
 
 inherit bluetooth python-dir pkgconfig
