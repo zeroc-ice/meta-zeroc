@@ -10,7 +10,27 @@ See the OpenEmbedded [Layers FAQ](http://www.openembedded.org/wiki/Layers_FAQ) f
 
 ### zeroc-ice
 
-This recipe provides [Ice for embedded devices](https://github.com/zeroc-ice/icee), otherwise known as Ice-E. It is configured as a split recipe containing the following packages:
+The 3.7 version of this recipe provides [Ice](https://github.com/zeroc-ice/ice). It is configured as a split recipe containing the following packages:
+
+| Package Name        | Contents                                              |
+| ------------        | --------                                              |
+| zeroc-ice           | Ice for C++ shared libraries                          |
+| zeroc-ice-dev       | Ice for C++ header files and Slice compilers          |
+| zeroc-ice-doc       | Man file documentation                                |
+| zeroc-ice-python    | Ice for Python                                        |
+| zeroc-ice-slice     | Slice files                                           |
+| zeroc-ice-staticdev | Ice for C++ static libraries                          |
+| zeroc-ice-utils     | Ice utilities and admin tools                         |
+| zeroc-glacier2      | Glacier2 router                                       |
+| zeroc-icebox        | IceBox server                                         |
+| zeroc-icegrid       | IceGrid service                                       |
+| zeroc-icepatch2     | IcePatch2 service                                     |
+| zeroc-icestorm      | IceStorm publish-subscribe event distribution service |
+| zeroc-icebridge     | IceBridge server                                      |
+
+`native` and `nativesdk` packages are also available.
+
+The 3.6 version of this recipe provides [Ice for embedded devices](https://github.com/zeroc-ice/icee), otherwise known as Ice-E. It is configured as a split recipe containing the following packages:
 
 | Package Name        | Contents                                     |
 | ------------        | --------                                     |
