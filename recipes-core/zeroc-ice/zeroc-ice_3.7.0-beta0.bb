@@ -83,6 +83,10 @@ FILES_zeroc-icebox += "${bindir}/icebox*"
 PACKAGES =+ "zeroc-icestorm"
 FILES_zeroc-icestorm += "${bindir}/icestorm*"
 
+# IceStorm
+PACKAGES =+ "zeroc-icebridge"
+FILES_zeroc-icebridge += "${bindir}/icebridge*"
+
 # Python
 PACKAGES += "${PN}-python"
 FILES_${PN}-python += "${PYTHON_SITEPACKAGES_DIR}"
