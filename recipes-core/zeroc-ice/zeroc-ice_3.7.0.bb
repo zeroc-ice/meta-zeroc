@@ -16,7 +16,6 @@ SRC_URI = "git://github.com/zeroc-ice/ice"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
-DEFAULT_PREFERENCE = "-1"
 
 inherit bluetooth python-dir pkgconfig
 
