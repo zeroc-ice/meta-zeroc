@@ -12,9 +12,9 @@ DEPENDS_append_class-nativesdk = " zeroc-ice-native"
 RDEPENDS_${PN} = "openssl bzip2"
 
 SRC_URI = "git://github.com/zeroc-ice/icee.git;protocol=http;branch=3.6"
-SRCREV = "eaddf95b1a430508f4857e04f62d252b972d9186"
+SRCREV = "69739f36f84ea7c7f0cc05e381df883e6ce4cef0"
 
-ICE_VERSION = "3.6.3"
+ICE_VERSION = "3.6.4"
 PV = "${ICE_VERSION}"
 PR = "r1"
 
