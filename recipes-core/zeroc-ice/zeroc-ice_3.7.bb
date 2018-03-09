@@ -19,8 +19,8 @@ B = "${WORKDIR}/git"
 
 inherit bluetooth pythonnative pkgconfig
 
-BLUEZ_DEPS = "${BLUEZ} dbus-glib expat"
-DEPENDS  = " openssl bzip2 python mcpp lmdb ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
+BLUEZ_DEPS = "${BLUEZ} dbus-glib"
+DEPENDS  = " openssl bzip2 python mcpp lmdb expat ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
 RDEPENDS_${PN} = "openssl bzip2"
 
 python () {
