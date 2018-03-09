@@ -7,20 +7,20 @@ LICENSE  = "GPLv2"
 LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=8f854d70ef74e85cb1510dfe3787ec66 \
                     file://LICENSE;md5=1b65bb9598f16820aab2ae1dd2a51f9f"
 
-SRCREV  = "${AUTOREV}"
-
-PV = "3.7.0+git${SRCPV}"
+ICE_VERSION = "3.7.0"
+PV = "${ICE_VERSION}"
 PR = "r0"
 
 SRC_URI = "git://github.com/zeroc-ice/ice"
+SRCREV  = "fed3c47a56b237ca307336f1ea8eeac94185ca1e"
 
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
 
 inherit bluetooth python-dir pkgconfig
 
-BLUEZ_DEPS = "${BLUEZ} dbus-glib expat"
-DEPENDS  = " openssl bzip2 python mcpp lmdb ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
+BLUEZ_DEPS = "${BLUEZ} dbus-glib"
+DEPENDS  = " openssl bzip2 python mcpp lmdb expat ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
 RDEPENDS_${PN} = "openssl bzip2"
 
 python () {
