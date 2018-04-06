@@ -1,6 +1,6 @@
 SUMMARY  = "Symas Lightning Memory-mapped Database"
 DESCRIPTION = "Symas LMDB is an extraordinarily fast, memory-efficient database"
-HOMEPAGE = "https://github.com/zeroc-ice/mcpp"
+HOMEPAGE = "https://github.com/zeroc-ice/lmdb"
 SECTION  = "libs"
 
 LICENSE  = "OLDAP-2.8"

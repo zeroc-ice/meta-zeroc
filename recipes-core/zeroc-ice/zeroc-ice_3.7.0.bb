@@ -82,7 +82,7 @@ FILES_zeroc-icebox += "${bindir}/icebox*"
 PACKAGES =+ "zeroc-icestorm"
 FILES_zeroc-icestorm += "${bindir}/icestorm*"
 
-# IceStorm
+# IceBridge
 PACKAGES =+ "zeroc-icebridge"
 FILES_zeroc-icebridge += "${bindir}/icebridge*"
 
