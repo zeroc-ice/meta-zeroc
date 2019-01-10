@@ -4,7 +4,7 @@ HOMEPAGE = "https://zeroc.com"
 SECTION  = "libs"
 
 LICENSE  = "GPLv2"
-LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=3679fa8e314664494eac16771c840e06 \
+LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=5f0780be4f1b8866fb1560c63f2499ce \
                     file://LICENSE;md5=1b65bb9598f16820aab2ae1dd2a51f9f"
 
 SRCREV  = "${AUTOREV}"
