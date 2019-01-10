@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://ICE_LICENSE;md5=5f0780be4f1b8866fb1560c63f2499ce \
 
 SRCREV  = "${AUTOREV}"
 
-PV = "3.7.1+git${SRCPV}"
+PV = "3.7.2+git${SRCPV}"
 PR = "r0"
 
 SRC_URI = "git://github.com/zeroc-ice/ice;branch=3.7"
