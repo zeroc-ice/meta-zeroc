@@ -4,7 +4,7 @@ This meta layer provides recipes for ZeroC products.
 
 ## Branches
 
-This respository has several branches as the poky repository (jethro, krogoth, morty, pyro etc.)
+This respository has several branches as the poky repository (thud, sumo, jethro, krogoth, morty, pyro etc.)
 development is done in the master branch, and other branches must be used for building with
 a specific poky release.
 
