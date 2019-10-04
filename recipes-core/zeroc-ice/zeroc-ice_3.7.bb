@@ -17,35 +17,51 @@ SRC_URI = "git://github.com/zeroc-ice/ice;branch=3.7"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/git"
 
-inherit bluetooth pythonnative pkgconfig
+inherit bluetooth pkgconfig python3native python3-dir
 
-BLUEZ_DEPS = "${BLUEZ} dbus-glib"
-DEPENDS  = " openssl bzip2 python mcpp lmdb expat ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ_DEPS}', '', d)}"
-RDEPENDS_${PN} = "openssl bzip2"
+DEPENDS  = "openssl bzip2 mcpp lmdb expat python3"
+DEPENDS_append_class-target = " ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', d.expand('${BLUEZ} dbus-glib'), '', d)}"
 
-python () {
-    import re
-    m = re.search('^([a-z0-9_]+)-.*', d.getVar("CXX", True))
-    if m:
-        d.setVar('PLATFORM', m.group(1))
-}
+DEPENDS_append_class-target = " zeroc-ice-native"
+RDEPENDS_${PN} = "openssl bzip2 expat"
 
+#
 # OECORE_SDK_VERSION is always set in an SDK. To get the Ice build system to
 # detect a Yocto/OE build just need to to be set here.
-EXTRA_OEMAKE = "'OECORE_SDK_VERSION=yes' \
-                'CONFIGS=all' \
-                'LANGUAGES=cpp python' \
-                'USR_DIR_INSTALL=yes' \
-                "${PLATFORM}_excludes=${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '', 'IceBT', d)}"\
-                'install_pythondir=${PYTHON_SITEPACKAGES_DIR}'"
+#
+EXTRA_OEMAKE = "OECORE_SDK_VERSION=yes V=1"
 
+EXTRA_OEMAKE_append_class-target = " CONFIGS=all ICE_HOME=${STAGING_DIR_NATIVE}/usr ICE_BIN_DIST=compilers"
+
+do_compile_class-target () {
+    oe_runmake LANGUAGES="cpp python" srcs
+}
+
+do_configure_class-target () {
+    oe_runmake LANGUAGES="cpp python" distclean
+}
+
+do_install_class-target () {
+    oe_runmake LANGUAGES="cpp python" \
+	DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes \
+	PYTHON_INSTALLDIR=${PYTHON_SITEPACKAGES_DIR} install
+}
+
+#
+# Use bellow targets for native and naivesdk
+#
 do_compile () {
-    oe_runmake V=1 srcs
+    oe_runmake -C cpp slice2cpp slice2py
+}
+
+do_configure () {
+    oe_runmake distclean -C cpp
 }
 
 do_install () {
-    oe_runmake install DESTDIR=${D} prefix=${prefix}
+    oe_runmake DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes -C cpp slice2cpp_install slice2py_install
 }
+
 FILES_${PN} += "${base_prefix}/usr/share/ice/templates.xml \
                 ${base_prefix}/usr/share/ice/ICE_LICENSE \
                 ${base_prefix}/usr/share/ice/LICENSE"
@@ -54,9 +70,6 @@ FILES_${PN} += "${base_prefix}/usr/share/ice/templates.xml \
 FILES_${PN}-dev += "${bindir}/slice2*"
 DEPENDS_${PN}-dev= "${PN}-slice"
 RDEPENDS_${PN}-dev= "${PN}-slice"
-
-# Add Python debug files to -dbg
-FILES_${PN}-dbg += "${PYTHON_SITEPACKAGES_DIR}/.debug"
 
 # Glacier2
 PACKAGES =+ "zeroc-glacier2"
@@ -83,9 +96,9 @@ PACKAGES =+ "zeroc-icebridge"
 FILES_zeroc-icebridge += "${bindir}/icebridge*"
 
 # Python
-PACKAGES += "${PN}-python"
-FILES_${PN}-python += "${PYTHON_SITEPACKAGES_DIR}"
-RDEPENDS_${PN}-python = "${PN}-slice python-core"
+PACKAGES += "${PN}-python3"
+FILES_${PN}-python3 += "${PYTHON_SITEPACKAGES_DIR}"
+RDEPENDS_${PN}-python3 = "${PN}-slice python3-core"
 
 # Slice
 PACKAGES =+ "${PN}-slice"
