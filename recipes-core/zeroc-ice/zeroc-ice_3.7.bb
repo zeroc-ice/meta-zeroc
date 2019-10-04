@@ -20,45 +20,50 @@ B = "${WORKDIR}/git"
 inherit bluetooth pkgconfig python3native python3-dir
 
 DEPENDS  = "openssl bzip2 mcpp lmdb expat python3"
+
 DEPENDS_append_class-target = " ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', d.expand('${BLUEZ} dbus-glib'), '', d)}"
+DEPENDS_append_class-nativesdk = " ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', d.expand('${BLUEZ} dbus-glib'), '', d)}"
 
 DEPENDS_append_class-target = " zeroc-ice-native"
+DEPENDS_append_class-nativesdk = " zeroc-ice-native"
+
 RDEPENDS_${PN} = "openssl bzip2 expat"
 
 #
 # OECORE_SDK_VERSION is always set in an SDK. To get the Ice build system to
 # detect a Yocto/OE build just need to to be set here.
 #
+
 EXTRA_OEMAKE = "OECORE_SDK_VERSION=yes V=1"
-
 EXTRA_OEMAKE_append_class-target = " CONFIGS=all ICE_HOME=${STAGING_DIR_NATIVE}/usr ICE_BIN_DIST=compilers"
+EXTRA_OEMAKE_append_class-nativesdk = " CONFIGS=all ICE_HOME=${STAGING_DIR_NATIVE}/usr ICE_BIN_DIST=compilers"
 
-do_compile_class-target () {
+do_compile () {
     oe_runmake LANGUAGES="cpp python" srcs
 }
 
-do_configure_class-target () {
+do_configure () {
     oe_runmake LANGUAGES="cpp python" distclean
 }
 
-do_install_class-target () {
+do_install () {
     oe_runmake LANGUAGES="cpp python" \
 	DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes \
 	PYTHON_INSTALLDIR=${PYTHON_SITEPACKAGES_DIR} install
 }
 
 #
-# Use bellow targets for native and naivesdk
+# Use bellow targets for native
 #
-do_compile () {
+do_compile_class-native () {
     oe_runmake -C cpp slice2cpp slice2py
 }
 
-do_configure () {
+do_configure_class-native () {
     oe_runmake distclean -C cpp
 }
 
-do_install () {
+do_install_class-native () {
     oe_runmake DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes -C cpp slice2cpp_install slice2py_install
 }
 
