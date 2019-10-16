@@ -64,6 +64,7 @@ do_configure_class-native () {
 }
 
 do_install_class-native () {
+    oe_runmake DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes install-slice
     oe_runmake DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes -C cpp slice2cpp_install slice2py_install
 }
 
