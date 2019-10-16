@@ -4,7 +4,7 @@ This meta layer provides recipes for ZeroC products.
 
 ## Branches
 
-This respository has several branches as the poky repository (thud, sumo, jethro, krogoth, morty, pyro etc.)
+This respository has several branches as the poky repository (warrior, thud, sumo, jethro, krogoth, morty, etc.)
 development is done in the master branch, and other branches must be used for building with
 a specific poky release.
 
@@ -23,7 +23,7 @@ This recipe provides [Ice](https://github.com/zeroc-ice/ice). It is configured a
 | zeroc-ice           | Ice for C++ shared libraries                          |
 | zeroc-ice-dev       | Ice for C++ header files and Slice compilers          |
 | zeroc-ice-doc       | Man file documentation                                |
-| zeroc-ice-python    | Ice for Python                                        |
+| zeroc-ice-python3   | Ice for Python                                        |
 | zeroc-ice-slice     | Slice files                                           |
 | zeroc-ice-staticdev | Ice for C++ static libraries                          |
 | zeroc-ice-utils     | Ice utilities and admin tools                         |
