@@ -48,8 +48,8 @@ do_configure () {
 
 do_install () {
     oe_runmake LANGUAGES="cpp python" \
-	DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes \
-	PYTHON_INSTALLDIR=${PYTHON_SITEPACKAGES_DIR} install
+    DESTDIR=${D} prefix=${prefix} USR_DIR_INSTALL=yes \
+    PYTHON_INSTALLDIR=${PYTHON_SITEPACKAGES_DIR} install
 }
 
 #
